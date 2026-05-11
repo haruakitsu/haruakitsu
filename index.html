@@ -7,6 +7,8 @@
   <title>haruakitsu ✦ lore world</title>
   <meta name="description" content="haruakitsu — soft fox spirit, sunset sketchbook, sakura lore and quiet music." />
 
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --cream: #fff0e3;
@@ -23,18 +25,14 @@
       --shadow: rgba(102, 48, 28, 0.18);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       color: var(--brown);
-      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      font-family: "Patrick Hand", "Trebuchet MS", "Segoe UI", sans-serif;
       background:
         radial-gradient(circle at 12% 8%, rgba(255, 183, 200, 0.75), transparent 28%),
         radial-gradient(circle at 88% 12%, rgba(255, 186, 134, 0.75), transparent 30%),
@@ -196,9 +194,11 @@
 
     h1 {
       margin: 0;
-      font-size: clamp(4.2rem, 13vw, 9.2rem);
-      line-height: 0.84;
-      letter-spacing: -5px;
+      font-family: "Caveat", cursive;
+      font-size: clamp(5rem, 15vw, 10rem);
+      line-height: 0.8;
+      letter-spacing: -2px;
+      font-weight: 700;
       text-shadow: 5px 5px 0 rgba(242, 138, 75, 0.28);
     }
 
@@ -272,13 +272,8 @@
       animation: fadeUp 0.7s ease both;
     }
 
-    .card.wide {
-      grid-column: 1 / -1;
-    }
-
-    .card.small {
-      grid-column: span 4;
-    }
+    .card.wide { grid-column: 1 / -1; }
+    .card.small { grid-column: span 4; }
 
     .card::after {
       content: "";
@@ -309,9 +304,7 @@
       line-height: 1.78;
     }
 
-    .muted {
-      color: var(--muted);
-    }
+    .muted { color: var(--muted); }
 
     .pill-list {
       display: flex;
@@ -371,6 +364,7 @@
     .tracks {
       display: grid;
       gap: 12px;
+      margin-top: 22px;
     }
 
     .track {
@@ -385,6 +379,67 @@
       transform: translateX(8px);
       background: rgba(255, 209, 196, 0.78);
     }
+
+    .vinyl-player {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 22px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    .vinyl {
+      width: 145px;
+      height: 145px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, #ffd6c6 0 13%, #3d1f17 14% 18%, #1b0d09 19% 100%);
+      box-shadow: 0 18px 40px rgba(80, 35, 20, 0.22);
+      position: relative;
+      animation: spin 7s linear infinite;
+    }
+
+    .vinyl::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 50%;
+      border: 2px dashed rgba(255,255,255,0.18);
+    }
+
+    .vinyl::after {
+      content: "TØP";
+      position: absolute;
+      inset: 49px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffb7c8, #ffb27c);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: #3d1f17;
+      font-size: 1.1rem;
+    }
+
+    .equalizer {
+      display: flex;
+      gap: 5px;
+      align-items: end;
+      height: 34px;
+      margin: 12px 0;
+    }
+
+    .equalizer span {
+      width: 7px;
+      border-radius: 999px;
+      background: #e9793d;
+      animation: bounce 1s ease-in-out infinite;
+    }
+
+    .equalizer span:nth-child(1) { height: 14px; animation-delay: 0s; }
+    .equalizer span:nth-child(2) { height: 27px; animation-delay: 0.15s; }
+    .equalizer span:nth-child(3) { height: 19px; animation-delay: 0.3s; }
+    .equalizer span:nth-child(4) { height: 31px; animation-delay: 0.45s; }
+    .equalizer span:nth-child(5) { height: 17px; animation-delay: 0.6s; }
 
     .gallery {
       display: grid;
@@ -439,6 +494,13 @@
       font-weight: 800;
     }
 
+    .soft-divider {
+      width: min(540px, 80%);
+      height: 2px;
+      margin: 22px auto;
+      background: linear-gradient(90deg, transparent, rgba(74,36,24,0.28), transparent);
+    }
+
     footer {
       margin-top: 48px;
       text-align: center;
@@ -447,14 +509,8 @@
     }
 
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(22px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes slowGlow {
@@ -467,30 +523,40 @@
       50% { transform: translateY(-12px) rotate(1deg); }
     }
 
-    @media (max-width: 850px) {
-      .site {
-        width: min(100% - 22px, 1180px);
-      }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
 
-      .nav {
-        border-radius: 24px;
-      }
+    @keyframes bounce {
+      0%, 100% { transform: scaleY(0.55); opacity: 0.65; }
+      50% { transform: scaleY(1); opacity: 1; }
+    }
+
+    @media (max-width: 850px) {
+      .site { width: min(100% - 22px, 1180px); }
+
+      .nav { border-radius: 24px; }
 
       .card,
-      .card.small {
-        grid-column: 1 / -1;
-      }
+      .card.small { grid-column: 1 / -1; }
 
-      .gallery {
+      .gallery { grid-template-columns: 1fr; }
+
+      h1 { letter-spacing: -3px; }
+
+      .jp { letter-spacing: 5px; }
+    }
+
+    @media (max-width: 650px) {
+      .vinyl-player {
         grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
       }
 
-      h1 {
-        letter-spacing: -3px;
-      }
-
-      .jp {
-        letter-spacing: 5px;
+      .character-float {
+        width: 110px;
+        opacity: 0.72;
       }
     }
   </style>
@@ -510,20 +576,25 @@
 
   <!--
     SAFE IMAGE SYSTEM:
-    1) Upload images to GitHub with names like:
-       oc-card.png, haru.png, lore-1.png, lore-2.png, gallery-1.png
-    2) Replace placeholders like:
-       <div class="image-slot">...</div>
-       with:
-       <div class="image-slot"><img src="oc-card.png" alt="Haru OC card"></div>
-    3) Do not delete CSS. Only replace image names.
+    Upload files to GitHub with simple names:
+    oc-card.png
+    haru.png
+    lore-1.png
+    lore-2.png
+    lore-3.png
+    gallery-1.png
+    gallery-2.png
+    gallery-3.png
+
+    Then replace placeholders with:
+    <img src="filename.png" alt="description">
   -->
 
   <div class="character-float">
     <div class="character-placeholder">
       upload<br>haru.png<br>later 🦊
     </div>
-    <!-- Later replace placeholder with:
+    <!-- Later:
     <img src="haru.png" alt="Haru character">
     -->
   </div>
@@ -548,6 +619,8 @@
           <h1>haruakitsu</h1>
           <div class="jp">ハルアキツ</div>
 
+          <div class="soft-divider"></div>
+
           <p class="tagline">
             A warm little corner for Haru — a quiet fox-inspired character shaped by
             music, sunset skies, soft sketches, deep attachment and the fox that stayed.
@@ -555,6 +628,7 @@
 
           <div class="actions">
             <a class="btn primary" href="#lore">read the lore</a>
+            <a class="btn" href="#music">now playing</a>
             <a class="btn" href="#gallery">view gallery</a>
             <a class="btn" href="https://www.youtube.com/@haruakitsu" target="_blank">YouTube</a>
             <a class="btn" href="https://ch.pinterest.com/haruakii_x/" target="_blank">Pinterest</a>
@@ -594,7 +668,7 @@
       <article class="card wide">
         <h2>✦ OC card</h2>
         <p class="muted">
-          Later: upload your finished OC card as <b>oc-card.png</b> and replace this block with the image.
+          Later: upload your finished OC card as <b>oc-card.png</b> and replace this placeholder with the image.
         </p>
         <div class="image-slot">
           OC card image placeholder ✦
@@ -606,9 +680,7 @@
       <article class="card wide">
         <h2>✦ The Fox That Stayed</h2>
 
-        <p>
-          Haru never felt like he belonged inside large groups of people.
-        </p>
+        <p>Haru never felt like he belonged inside large groups of people.</p>
 
         <p>
           It was not because he hated people. He simply felt overwhelmed by too many voices,
@@ -640,13 +712,9 @@
           lore image 1 placeholder ✦
         </div>
 
-        <p>
-          The fox appeared during a rainy evening.
-        </p>
+        <p>The fox appeared during a rainy evening.</p>
 
-        <p>
-          Quiet. Still. Strange.
-        </p>
+        <p>Quiet. Still. Strange.</p>
 
         <p>
           It did not run away. It did not come closer either.
@@ -687,35 +755,26 @@
           Haru never saw it separately again.
         </p>
 
-        <p>
-          But after that, the changes began.
-        </p>
+        <p>But after that, the changes began.</p>
 
         <p>
           His emotions became sharper. He noticed warmth in voices,
           silence between words, the feeling of rain and the color of sunset light on windows.
         </p>
 
-        <p>
-          And later — fox ears and a tail appeared.
-        </p>
+        <p>And later — fox ears and a tail appeared.</p>
 
         <div class="image-slot">
           lore image 3 placeholder ✦
         </div>
 
-        <p>
-          At first, Haru tried to understand what had happened to him.
-        </p>
+        <p>At first, Haru tried to understand what had happened to him.</p>
 
-        <p>
-          But eventually he realized:
-          the fox had not truly disappeared.
-        </p>
+        <p>But eventually he realized:</p>
 
-        <p>
-          It simply stopped existing separately from him.
-        </p>
+        <p>The fox had not truly disappeared.</p>
+
+        <p>It simply stopped existing separately from him.</p>
 
         <div class="quote">
           “Some fox spirits stay beside lonely people until they no longer have to carry that loneliness alone.”
@@ -726,6 +785,26 @@
     <section class="grid" id="music">
       <article class="card">
         <h2>✦ now playing</h2>
+
+        <div class="vinyl-player">
+          <div class="vinyl"></div>
+
+          <div>
+            <p>
+              <b>Twenty One Pilots</b><br>
+              <span class="muted">songs that feel like home</span>
+            </p>
+
+            <div class="equalizer">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+
+            <div class="actions" style="justify-content:flex-start; margin-top:16px;">
+              <a class="btn primary" href="PASTE_YOUR_SPOTIFY_LINK_HERE" target="_blank">open Spotify</a>
+            </div>
+          </div>
+        </div>
+
         <div class="tracks">
           <div class="track">♪ Twenty One Pilots — Stressed Out</div>
           <div class="track">♪ Bring Me The Horizon</div>
@@ -742,6 +821,10 @@
           There are more important things.”
         </p>
         <p class="muted">— Kazuto Kirigaya</p>
+
+        <div class="quote">
+          quiet strength over numbers.
+        </div>
       </article>
     </section>
 
@@ -749,7 +832,7 @@
       <article class="card wide">
         <h2>✦ gallery</h2>
         <p class="muted">
-          Upload your images later and replace these placeholders. Keep names simple:
+          Upload images later and replace placeholders. Keep names simple:
           <b>gallery-1.png</b>, <b>gallery-2.png</b>, <b>gallery-3.png</b>.
         </p>
 
