@@ -3,19 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>haruakitsu</title>
+
+  <title>haruakitsu ✦ lore world</title>
+  <meta name="description" content="haruakitsu — soft fox spirit, sunset sketchbook, sakura lore and quiet music." />
 
   <style>
     :root {
-      --bg: #ffe3d2;
-      --paper: rgba(255, 239, 225, 0.78);
-      --paper-strong: rgba(255, 246, 237, 0.92);
-      --orange: #e9793d;
-      --soft-orange: #ffb27c;
-      --pink: #ffb8c8;
-      --brown: #4a2418;
-      --muted: #8a5c4b;
-      --shadow: rgba(101, 45, 28, 0.22);
+      --cream: #fff0e3;
+      --paper: rgba(255, 245, 235, 0.82);
+      --paper-solid: #fff7ef;
+      --orange: #f28a4b;
+      --soft-orange: #ffc096;
+      --peach: #ffd9c3;
+      --sakura: #ffb7c8;
+      --soft-pink: #ffd7df;
+      --brown: #3d1f17;
+      --muted: #8b5b4a;
+      --line: rgba(72, 34, 22, 0.28);
+      --shadow: rgba(102, 48, 28, 0.18);
     }
 
     * {
@@ -28,12 +33,13 @@
 
     body {
       margin: 0;
-      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
       color: var(--brown);
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 15% 10%, #ffd2bd 0%, transparent 32%),
-        radial-gradient(circle at 85% 15%, #ffc2ca 0%, transparent 28%),
-        linear-gradient(135deg, #ffe8d7, #ffd0bd 48%, #f7b68f);
+        radial-gradient(circle at 12% 8%, rgba(255, 183, 200, 0.75), transparent 28%),
+        radial-gradient(circle at 88% 12%, rgba(255, 186, 134, 0.75), transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(255, 216, 195, 0.8), transparent 34%),
+        linear-gradient(135deg, #fff2e8, #ffd9c8 45%, #ffc39f);
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -43,11 +49,22 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: 0.18;
       background-image:
-        linear-gradient(rgba(80, 35, 20, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(80, 35, 20, 0.08) 1px, transparent 1px);
+        linear-gradient(rgba(70, 32, 18, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(70, 32, 18, 0.055) 1px, transparent 1px);
       background-size: 34px 34px;
+      opacity: 0.28;
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.35), transparent 22%),
+        radial-gradient(circle at 70% 70%, rgba(255,255,255,0.22), transparent 26%);
       z-index: 0;
     }
 
@@ -55,243 +72,412 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 1;
       overflow: hidden;
+      z-index: 1;
     }
 
     .petal {
       position: absolute;
       top: -40px;
-      width: 14px;
+      width: 15px;
       height: 9px;
-      background: var(--pink);
       border-radius: 80% 20% 70% 30%;
-      opacity: 0.8;
-      animation: fall linear infinite;
-      transform: rotate(20deg);
+      background: var(--sakura);
+      opacity: 0.75;
+      animation: petalFall linear infinite;
     }
 
-    .petal:nth-child(1) { left: 8%; animation-duration: 12s; animation-delay: 0s; }
-    .petal:nth-child(2) { left: 18%; animation-duration: 16s; animation-delay: 2s; }
-    .petal:nth-child(3) { left: 29%; animation-duration: 11s; animation-delay: 1s; }
-    .petal:nth-child(4) { left: 46%; animation-duration: 18s; animation-delay: 3s; }
-    .petal:nth-child(5) { left: 59%; animation-duration: 13s; animation-delay: 0.5s; }
-    .petal:nth-child(6) { left: 71%; animation-duration: 15s; animation-delay: 4s; }
-    .petal:nth-child(7) { left: 83%; animation-duration: 12s; animation-delay: 2.5s; }
-    .petal:nth-child(8) { left: 94%; animation-duration: 17s; animation-delay: 1.5s; }
+    .petal:nth-child(1) { left: 6%; animation-duration: 15s; animation-delay: 0s; }
+    .petal:nth-child(2) { left: 17%; animation-duration: 19s; animation-delay: 2s; }
+    .petal:nth-child(3) { left: 28%; animation-duration: 13s; animation-delay: 1s; }
+    .petal:nth-child(4) { left: 43%; animation-duration: 18s; animation-delay: 4s; }
+    .petal:nth-child(5) { left: 58%; animation-duration: 14s; animation-delay: 0.5s; }
+    .petal:nth-child(6) { left: 72%; animation-duration: 20s; animation-delay: 3s; }
+    .petal:nth-child(7) { left: 85%; animation-duration: 16s; animation-delay: 2.4s; }
+    .petal:nth-child(8) { left: 94%; animation-duration: 21s; animation-delay: 1.5s; }
 
-    @keyframes fall {
-      0% {
-        transform: translateY(-40px) translateX(0) rotate(0deg);
-      }
-      100% {
-        transform: translateY(110vh) translateX(80px) rotate(360deg);
-      }
+    @keyframes petalFall {
+      0% { transform: translateY(-60px) translateX(0) rotate(0deg); }
+      100% { transform: translateY(110vh) translateX(90px) rotate(380deg); }
     }
 
-    .wrap {
+    .site {
       position: relative;
       z-index: 2;
-      max-width: 1180px;
+      width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 42px 18px 70px;
+      padding: 34px 0 70px;
     }
 
-    header {
-      min-height: 88vh;
+    .topbar {
+      position: sticky;
+      top: 14px;
+      z-index: 20;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 26px;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 246, 238, 0.74);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 14px 38px var(--shadow);
+    }
+
+    .nav a {
+      color: var(--brown);
+      text-decoration: none;
+      padding: 9px 15px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: 0.22s ease;
+    }
+
+    .nav a:hover {
+      background: rgba(255, 184, 160, 0.46);
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      min-height: 82vh;
       display: grid;
       place-items: center;
       text-align: center;
-      position: relative;
+      padding: 36px 0;
     }
 
     .hero-card {
-      width: min(920px, 100%);
-      padding: 44px 28px;
+      width: min(980px, 100%);
+      padding: clamp(28px, 5vw, 56px);
+      border: 2px solid var(--line);
+      border-radius: 38px;
       background: var(--paper);
-      border: 2px solid rgba(77, 34, 21, 0.35);
-      border-radius: 34px;
-      box-shadow: 0 24px 80px var(--shadow);
-      backdrop-filter: blur(10px);
-      transform: rotate(-1deg);
+      box-shadow: 0 28px 90px var(--shadow);
+      backdrop-filter: blur(12px);
       position: relative;
       overflow: hidden;
+      animation: fadeUp 0.85s ease both;
     }
 
     .hero-card::before {
       content: "";
       position: absolute;
       inset: -40%;
-      background: radial-gradient(circle, rgba(255,255,255,0.34), transparent 35%);
-      animation: glow 8s ease-in-out infinite alternate;
+      background:
+        radial-gradient(circle, rgba(255,255,255,0.42), transparent 32%),
+        radial-gradient(circle at 70% 30%, rgba(255, 177, 125, 0.32), transparent 28%);
+      animation: slowGlow 9s ease-in-out infinite alternate;
     }
 
-    @keyframes glow {
-      from { transform: translate(-8%, -8%); }
-      to { transform: translate(8%, 8%); }
-    }
-
-    .hero-content {
+    .hero-inner {
       position: relative;
       z-index: 2;
     }
 
+    .kicker {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1.5px dashed rgba(74, 36, 24, 0.34);
+      background: rgba(255,255,255,0.35);
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+
     h1 {
-      font-size: clamp(4rem, 12vw, 9rem);
       margin: 0;
-      letter-spacing: -4px;
-      line-height: 0.85;
-      color: #27110b;
-      text-shadow: 4px 4px 0 rgba(255, 146, 99, 0.45);
+      font-size: clamp(4.2rem, 13vw, 9.2rem);
+      line-height: 0.84;
+      letter-spacing: -5px;
+      text-shadow: 5px 5px 0 rgba(242, 138, 75, 0.28);
     }
 
     .jp {
-      margin-top: 14px;
-      font-size: clamp(1.1rem, 3vw, 1.8rem);
-      letter-spacing: 8px;
+      margin-top: 18px;
       color: var(--muted);
+      letter-spacing: 9px;
+      font-size: clamp(1rem, 3vw, 1.55rem);
     }
 
     .tagline {
-      max-width: 680px;
-      margin: 26px auto 0;
-      font-size: 1.15rem;
-      line-height: 1.7;
-      color: #613626;
+      max-width: 720px;
+      margin: 28px auto 0;
+      color: #62372a;
+      font-size: 1.12rem;
+      line-height: 1.8;
     }
 
-    .buttons {
-      margin-top: 34px;
+    .actions {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 14px;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 32px;
     }
 
     .btn {
-      text-decoration: none;
-      color: var(--brown);
-      padding: 13px 22px;
-      border: 2px solid rgba(74, 36, 24, 0.45);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 12px 20px;
+      border: 2px solid rgba(74, 36, 24, 0.36);
       border-radius: 999px;
-      background: rgba(255, 244, 235, 0.72);
-      box-shadow: 0 8px 0 rgba(125, 61, 35, 0.18);
-      transition: 0.22s ease;
-      font-weight: 700;
+      color: var(--brown);
+      background: rgba(255, 246, 238, 0.78);
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 8px 0 rgba(125, 61, 35, 0.16);
+      transition: 0.24s ease;
     }
 
     .btn:hover {
       transform: translateY(-5px) rotate(-1deg);
-      background: #fff4ec;
-      box-shadow: 0 14px 18px rgba(125, 61, 35, 0.18);
+      background: #fff8f1;
+      box-shadow: 0 16px 24px rgba(125, 61, 35, 0.18);
     }
 
-    .section {
-      margin-top: 44px;
+    .btn.primary {
+      background: linear-gradient(135deg, #ffd2bf, #ffb4c2);
+    }
+
+    .grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      gap: 20px;
+      gap: 22px;
+      margin-top: 34px;
     }
 
-    .note {
-      background: var(--paper-strong);
-      border: 2px solid rgba(77, 34, 21, 0.28);
-      border-radius: 24px;
+    .card {
+      grid-column: span 6;
       padding: 24px;
-      box-shadow: 0 16px 46px rgba(80, 35, 20, 0.12);
+      border-radius: 30px;
+      border: 2px solid var(--line);
+      background: var(--paper);
+      box-shadow: 0 20px 60px rgba(102, 48, 28, 0.12);
+      backdrop-filter: blur(10px);
       position: relative;
+      overflow: hidden;
+      animation: fadeUp 0.7s ease both;
     }
 
-    .note::after {
+    .card.wide {
+      grid-column: 1 / -1;
+    }
+
+    .card.small {
+      grid-column: span 4;
+    }
+
+    .card::after {
       content: "";
       position: absolute;
-      top: -14px;
-      left: 34px;
-      width: 78px;
-      height: 26px;
-      background: rgba(255, 177, 125, 0.58);
-      border: 1px solid rgba(74, 36, 24, 0.18);
+      top: -13px;
+      left: 32px;
+      width: 82px;
+      height: 25px;
+      border: 1px solid rgba(74, 36, 24, 0.12);
+      background: rgba(255, 184, 140, 0.56);
       transform: rotate(-4deg);
+      opacity: 0.84;
     }
 
-    .wide { grid-column: span 7; }
-    .small { grid-column: span 5; }
-    .full { grid-column: 1 / -1; }
-
     h2 {
-      margin: 0 0 14px;
-      font-size: 1.8rem;
-      letter-spacing: 1px;
+      margin: 0 0 16px;
+      font-size: 1.75rem;
+      letter-spacing: 0.5px;
+    }
+
+    h3 {
+      margin: 24px 0 10px;
+      color: #69382a;
     }
 
     p, li {
-      line-height: 1.75;
-      font-size: 1.02rem;
+      font-size: 1.03rem;
+      line-height: 1.78;
     }
 
-    ul {
-      padding-left: 20px;
-      margin: 0;
+    .muted {
+      color: var(--muted);
     }
 
-    .oc-image {
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pill-list li {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 222, 208, 0.68);
+      border: 1.5px dashed rgba(74, 36, 24, 0.24);
+      line-height: 1.2;
+    }
+
+    .image-slot {
+      min-height: 245px;
+      margin: 24px 0;
+      border-radius: 26px;
+      border: 2px dashed rgba(74, 36, 24, 0.28);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.42), rgba(255, 192, 160, 0.20)),
+        radial-gradient(circle at 70% 20%, rgba(255, 183, 200, 0.32), transparent 42%);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+      overflow: hidden;
+      transition: 0.25s ease;
+    }
+
+    .image-slot:hover {
+      transform: scale(1.01);
+      box-shadow: 0 16px 48px rgba(102, 48, 28, 0.14);
+    }
+
+    .image-slot img {
       width: 100%;
-      border-radius: 24px;
-      border: 2px solid rgba(74, 36, 24, 0.28);
-      box-shadow: 0 20px 55px rgba(83, 39, 24, 0.2);
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .music-card {
+    .quote {
+      margin: 28px 0 0;
+      padding: 22px;
+      text-align: center;
+      border-radius: 24px;
+      background: rgba(255, 221, 211, 0.55);
+      border: 1.5px solid rgba(74, 36, 24, 0.22);
+      font-style: italic;
+      color: #653529;
+    }
+
+    .tracks {
       display: grid;
       gap: 12px;
     }
 
     .track {
       padding: 14px 16px;
-      border: 1.8px dashed rgba(74, 36, 24, 0.36);
       border-radius: 18px;
-      background: rgba(255, 222, 203, 0.55);
-      transition: 0.2s ease;
+      border: 1.7px dashed rgba(74, 36, 24, 0.32);
+      background: rgba(255, 229, 216, 0.64);
+      transition: 0.22s ease;
     }
 
     .track:hover {
       transform: translateX(8px);
-      background: rgba(255, 202, 184, 0.7);
+      background: rgba(255, 209, 196, 0.78);
     }
 
     .gallery {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
+      margin-top: 16px;
     }
 
-    .placeholder {
-      min-height: 180px;
+    .mini-slot {
+      min-height: 190px;
       border-radius: 22px;
-      border: 2px dashed rgba(74, 36, 24, 0.3);
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.45), rgba(255,180,145,0.22));
+      border: 2px dashed rgba(74, 36, 24, 0.25);
+      background: rgba(255,255,255,0.28);
       display: grid;
       place-items: center;
       text-align: center;
       color: var(--muted);
+      padding: 16px;
+      overflow: hidden;
+    }
+
+    .mini-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .character-float {
+      position: fixed;
+      right: 18px;
+      bottom: 16px;
+      width: min(170px, 28vw);
+      z-index: 15;
+      opacity: 0.95;
+      pointer-events: none;
+      filter: drop-shadow(0 18px 24px rgba(80, 35, 20, 0.22));
+      animation: floaty 4s ease-in-out infinite;
+    }
+
+    .character-float img {
+      width: 100%;
+      display: block;
+    }
+
+    .character-placeholder {
       padding: 18px;
+      border: 2px dashed rgba(74, 36, 24, 0.25);
+      border-radius: 24px;
+      background: rgba(255, 246, 238, 0.72);
+      color: var(--muted);
+      text-align: center;
+      font-weight: 800;
     }
 
     footer {
-      margin-top: 46px;
+      margin-top: 48px;
       text-align: center;
-      color: #6b3b2b;
+      color: #704030;
       opacity: 0.9;
     }
 
-    .tiny {
-      font-size: 0.92rem;
-      color: var(--muted);
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    @media (max-width: 800px) {
-      .wide, .small {
+    @keyframes slowGlow {
+      from { transform: translate(-7%, -6%) rotate(0deg); }
+      to { transform: translate(6%, 7%) rotate(8deg); }
+    }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-12px) rotate(1deg); }
+    }
+
+    @media (max-width: 850px) {
+      .site {
+        width: min(100% - 22px, 1180px);
+      }
+
+      .nav {
+        border-radius: 24px;
+      }
+
+      .card,
+      .card.small {
         grid-column: 1 / -1;
       }
 
@@ -299,8 +485,12 @@
         grid-template-columns: 1fr;
       }
 
-      .hero-card {
-        transform: none;
+      h1 {
+        letter-spacing: -3px;
+      }
+
+      .jp {
+        letter-spacing: 5px;
       }
     }
   </style>
@@ -318,114 +508,278 @@
     <div class="petal"></div>
   </div>
 
-  <div class="wrap">
-    <header>
+  <!--
+    SAFE IMAGE SYSTEM:
+    1) Upload images to GitHub with names like:
+       oc-card.png, haru.png, lore-1.png, lore-2.png, gallery-1.png
+    2) Replace placeholders like:
+       <div class="image-slot">...</div>
+       with:
+       <div class="image-slot"><img src="oc-card.png" alt="Haru OC card"></div>
+    3) Do not delete CSS. Only replace image names.
+  -->
+
+  <div class="character-float">
+    <div class="character-placeholder">
+      upload<br>haru.png<br>later 🦊
+    </div>
+    <!-- Later replace placeholder with:
+    <img src="haru.png" alt="Haru character">
+    -->
+  </div>
+
+  <main class="site">
+    <div class="topbar">
+      <nav class="nav">
+        <a href="#home">home</a>
+        <a href="#about">about</a>
+        <a href="#lore">lore</a>
+        <a href="#music">music</a>
+        <a href="#gallery">gallery</a>
+        <a href="#links">links</a>
+      </nav>
+    </div>
+
+    <section class="hero" id="home">
       <div class="hero-card">
-        <div class="hero-content">
+        <div class="hero-inner">
+          <div class="kicker">✦ sunset sketchbook • fox spirit • sakura archive</div>
+
           <h1>haruakitsu</h1>
           <div class="jp">ハルアキツ</div>
+
           <p class="tagline">
-            soft fox spirit • sunset sketchbook • sakura dreams<br>
-            a small warm corner for art, music, lore and quiet nights.
+            A warm little corner for Haru — a quiet fox-inspired character shaped by
+            music, sunset skies, soft sketches, deep attachment and the fox that stayed.
           </p>
 
-          <div class="buttons">
-            <a class="btn" href="#about">about</a>
-            <a class="btn" href="#lore">lore</a>
-            <a class="btn" href="#music">music</a>
-            <a class="btn" href="#gallery">gallery</a>
-            <a class="btn" href="https://ko-fi.com/" target="_blank">ko-fi</a>
+          <div class="actions">
+            <a class="btn primary" href="#lore">read the lore</a>
+            <a class="btn" href="#gallery">view gallery</a>
+            <a class="btn" href="https://www.youtube.com/@haruakitsu" target="_blank">YouTube</a>
+            <a class="btn" href="https://ch.pinterest.com/haruakii_x/" target="_blank">Pinterest</a>
+            <a class="btn" href="https://www.deviantart.com/haruakitsu" target="_blank">DeviantArt</a>
           </div>
         </div>
       </div>
-    </header>
+    </section>
 
-    <section class="section" id="about">
-      <div class="note wide">
-        <h2>✦ about haru</h2>
+    <section class="grid" id="about">
+      <article class="card">
+        <h2>✦ about Haru</h2>
         <p>
-          Haruakitsu is a soft fox-inspired character living somewhere between
-          warm sunsets, music, sketchbooks and quiet thoughts.
+          Haru never felt made for large groups. Loud voices, crowded rooms and too much attention
+          tired him quickly.
         </p>
         <p>
-          He loves foxes, anime, manga, deep talks, sakura season, orange skies,
-          and the kind of nights where music feels warmer than words.
+          But when he truly attached to one person, he loved deeply — almost too deeply.
+          That is why he often kept distance, even when he secretly wanted closeness.
         </p>
-      </div>
+      </article>
 
-      <div class="note small">
+      <article class="card">
         <h2>✦ core</h2>
-        <ul>
+        <ul class="pill-list">
           <li>Aquarius ♒</li>
           <li>Feb 1</li>
           <li>INFJ-T</li>
           <li>180 cm</li>
-          <li>favorite color: sunset sky + cherry blossoms</li>
+          <li>sunset sky</li>
+          <li>sakura season</li>
+          <li>quiet music</li>
+          <li>foxes</li>
         </ul>
-      </div>
+      </article>
+
+      <article class="card wide">
+        <h2>✦ OC card</h2>
+        <p class="muted">
+          Later: upload your finished OC card as <b>oc-card.png</b> and replace this block with the image.
+        </p>
+        <div class="image-slot">
+          OC card image placeholder ✦
+        </div>
+      </article>
     </section>
 
-    <section class="section" id="lore">
-      <div class="note small">
-        <h2>✦ fox spirit</h2>
-        <p>
-          Always nearby. Not loud, not obvious — just a quiet presence that stays
-          close when the sky turns orange.
-        </p>
-      </div>
+    <section class="grid" id="lore">
+      <article class="card wide">
+        <h2>✦ The Fox That Stayed</h2>
 
-      <div class="note wide">
-        <h2>✦ quote</h2>
         <p>
-          “Levels are just numbers.<br>
-          There are more important things.”
+          Haru never felt like he belonged inside large groups of people.
         </p>
-        <p class="tiny">— Kazuto Kirigaya, SAO</p>
-      </div>
+
+        <p>
+          It was not because he hated people. He simply felt overwhelmed by too many voices,
+          too much attention and the constant pressure to react.
+        </p>
+
+        <p>
+          But when Haru truly became attached to someone, he loved deeply.
+          Almost too deeply.
+        </p>
+
+        <p>
+          Because of that, he rarely allowed people to get close.
+          Being alone felt safer than losing someone important again.
+        </p>
+
+        <p>
+          Music, drawing, evening walks and sunset skies slowly replaced real closeness in his life.
+          Haru got used to loneliness — not because he wanted it, but because it became familiar.
+        </p>
+
+        <p>
+          Then, one day, he realized something that scared him:
+          he no longer felt like a lonely person.
+          He felt like someone who had existed alone for far too long.
+        </p>
+
+        <div class="image-slot">
+          lore image 1 placeholder ✦
+        </div>
+
+        <p>
+          The fox appeared during a rainy evening.
+        </p>
+
+        <p>
+          Quiet. Still. Strange.
+        </p>
+
+        <p>
+          It did not run away. It did not come closer either.
+          It simply sat nearby, as if it already understood him.
+        </p>
+
+        <p>
+          Haru kept seeing the fox again — near empty stations, under street lights,
+          in window reflections and between falling sakura petals.
+        </p>
+
+        <p>
+          The fox never made a sound.
+          But near it, Haru no longer felt emotionally empty.
+        </p>
+
+        <div class="image-slot">
+          lore image 2 placeholder ✦
+        </div>
+
+        <p>
+          Eventually, Haru understood something strange:
+          the fox was lonely too.
+        </p>
+
+        <p>
+          Not like an animal.
+          Like a spirit that had wandered alone for too long.
+        </p>
+
+        <p>
+          Maybe that was why it stayed near him.
+          Maybe it recognized the same loneliness inside Haru.
+        </p>
+
+        <p>
+          Then, one night, the fox disappeared completely.
+          Haru never saw it separately again.
+        </p>
+
+        <p>
+          But after that, the changes began.
+        </p>
+
+        <p>
+          His emotions became sharper. He noticed warmth in voices,
+          silence between words, the feeling of rain and the color of sunset light on windows.
+        </p>
+
+        <p>
+          And later — fox ears and a tail appeared.
+        </p>
+
+        <div class="image-slot">
+          lore image 3 placeholder ✦
+        </div>
+
+        <p>
+          At first, Haru tried to understand what had happened to him.
+        </p>
+
+        <p>
+          But eventually he realized:
+          the fox had not truly disappeared.
+        </p>
+
+        <p>
+          It simply stopped existing separately from him.
+        </p>
+
+        <div class="quote">
+          “Some fox spirits stay beside lonely people until they no longer have to carry that loneliness alone.”
+        </div>
+      </article>
     </section>
 
-    <section class="section" id="music">
-      <div class="note full">
+    <section class="grid" id="music">
+      <article class="card">
         <h2>✦ now playing</h2>
-        <div class="music-card">
+        <div class="tracks">
           <div class="track">♪ Twenty One Pilots — Stressed Out</div>
           <div class="track">♪ Bring Me The Horizon</div>
           <div class="track">♪ NF</div>
           <div class="track">♪ Billie Eilish</div>
           <div class="track">♪ YOASOBI</div>
         </div>
-      </div>
+      </article>
+
+      <article class="card">
+        <h2>✦ SAO quote</h2>
+        <p>
+          “Levels are just numbers.<br>
+          There are more important things.”
+        </p>
+        <p class="muted">— Kazuto Kirigaya</p>
+      </article>
     </section>
 
-    <section class="section" id="gallery">
-      <div class="note full">
+    <section class="grid" id="gallery">
+      <article class="card wide">
         <h2>✦ gallery</h2>
-        <p class="tiny">Later we will add your OC card, sketches, edits and artwork here.</p>
+        <p class="muted">
+          Upload your images later and replace these placeholders. Keep names simple:
+          <b>gallery-1.png</b>, <b>gallery-2.png</b>, <b>gallery-3.png</b>.
+        </p>
 
         <div class="gallery">
-          <div class="placeholder">OC card<br>coming soon</div>
-          <div class="placeholder">sketches<br>coming soon</div>
-          <div class="placeholder">sunset archive<br>coming soon</div>
+          <div class="mini-slot">gallery image 1</div>
+          <div class="mini-slot">gallery image 2</div>
+          <div class="mini-slot">gallery image 3</div>
         </div>
-      </div>
+      </article>
     </section>
 
-    <section class="section">
-      <div class="note full">
+    <section class="grid" id="links">
+      <article class="card wide">
         <h2>✦ links</h2>
-        <div class="buttons">
-          <a class="btn" href="https://instagram.com/" target="_blank">Instagram</a>
-          <a class="btn" href="https://youtube.com/" target="_blank">YouTube</a>
-          <a class="btn" href="https://pinterest.com/" target="_blank">Pinterest</a>
-          <a class="btn" href="https://deviantart.com/" target="_blank">DeviantArt</a>
-          <a class="btn" href="https://ko-fi.com/" target="_blank">Ko-fi</a>
+        <p class="muted">
+          Main socials and future support/shop page.
+        </p>
+
+        <div class="actions">
+          <a class="btn" href="https://www.youtube.com/@haruakitsu" target="_blank">YouTube</a>
+          <a class="btn" href="https://ch.pinterest.com/haruakii_x/" target="_blank">Pinterest</a>
+          <a class="btn" href="https://www.deviantart.com/haruakitsu" target="_blank">DeviantArt</a>
+          <a class="btn" href="https://ko-fi.com/" target="_blank">Ko-fi soon</a>
         </div>
-      </div>
+      </article>
     </section>
 
     <footer>
-      made with warm sunsets, sakura petals and fox spirit energy ✦
+      made with warm sunsets, sakura petals and the fox that stayed ✦
     </footer>
-  </div>
+  </main>
 </body>
 </html>
