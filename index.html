@@ -7,6 +7,7 @@
   <title>haruakitsu ✦ little fox corner</title>
   <meta name="description" content="haruakitsu — soft fox, anime edits, fan art, OCs and a cozy little internet corner." />
 
+  <link rel="icon" type="image/png" href="favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
 
   <style>
@@ -22,6 +23,11 @@
     * { box-sizing: border-box; }
 
     html { scroll-behavior: smooth; }
+
+    ::selection {
+      background: #ffbd9a;
+      color: var(--brown);
+    }
 
     body {
       margin: 0;
@@ -50,6 +56,69 @@
       z-index: 0;
     }
 
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.12;
+      background-image:
+        radial-gradient(rgba(80, 35, 20, 0.12) 0.5px, transparent 0.5px);
+      background-size: 4px 4px;
+      mix-blend-mode: multiply;
+    }
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 183, 200, 0.72), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(255, 186, 134, 0.72), transparent 30%),
+        linear-gradient(135deg, #fff2e8, #ffd9c8);
+      transition: opacity 0.55s ease, visibility 0.55s ease;
+    }
+
+    .loader.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-box {
+      padding: 24px 32px;
+      border-radius: 28px;
+      border: 2px dashed rgba(74, 36, 24, 0.25);
+      background: rgba(255, 248, 241, 0.72);
+      box-shadow: 0 20px 60px rgba(102, 48, 28, 0.15);
+      text-align: center;
+      color: var(--brown);
+      animation: loaderFloat 1.8s ease-in-out infinite;
+    }
+
+    .loader-title {
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+    }
+
+    .loader-dots {
+      color: var(--muted);
+      letter-spacing: 3px;
+      animation: blinkDots 1s ease-in-out infinite;
+    }
+
+    @keyframes loaderFloat {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
+    }
+
+    @keyframes blinkDots {
+      0%, 100% { opacity: 0.45; }
+      50% { opacity: 1; }
+    }
+
     .sparkle {
       position: fixed;
       pointer-events: none;
@@ -62,14 +131,8 @@
     }
 
     @keyframes sparkleFade {
-      0% {
-        opacity: 0.85;
-        transform: translate(-50%, -50%) scale(0.7) rotate(0deg);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-50%, -90%) scale(1.15) rotate(20deg);
-      }
+      0% { opacity: 0.85; transform: translate(-50%, -50%) scale(0.7) rotate(0deg); }
+      100% { opacity: 0; transform: translate(-50%, -90%) scale(1.15) rotate(20deg); }
     }
 
     .petals {
@@ -440,10 +503,10 @@
       color: var(--muted);
       overflow: hidden;
       transition: 0.25s ease;
+      transform-style: preserve-3d;
     }
 
     .image-slot:hover, .kirito-slot:hover {
-      transform: scale(1.01);
       box-shadow: 0 16px 48px rgba(102, 48, 28, 0.14);
     }
 
@@ -455,12 +518,26 @@
       object-fit: cover;
       display: block;
       transition: 0.35s ease;
+      will-change: transform;
     }
 
-    .image-slot:hover img,
-    .kirito-slot:hover img,
-    .mini-slot:hover img {
-      transform: scale(1.025);
+    .mini-slot {
+      min-height: 190px;
+      border-radius: 22px;
+      border: 2px dashed rgba(74, 36, 24, 0.25);
+      background: rgba(255,255,255,0.28);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+      padding: 16px;
+      overflow: hidden;
+      transition: 0.25s ease;
+      transform-style: preserve-3d;
+    }
+
+    .mini-slot:hover {
+      box-shadow: 0 16px 38px rgba(102, 48, 28, 0.13);
     }
 
     .quote {
@@ -551,25 +628,6 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
       margin-top: 16px;
-    }
-
-    .mini-slot {
-      min-height: 190px;
-      border-radius: 22px;
-      border: 2px dashed rgba(74, 36, 24, 0.25);
-      background: rgba(255,255,255,0.28);
-      display: grid;
-      place-items: center;
-      text-align: center;
-      color: var(--muted);
-      padding: 16px;
-      overflow: hidden;
-      transition: 0.25s ease;
-    }
-
-    .mini-slot:hover {
-      transform: translateY(-4px) rotate(-1deg);
-      box-shadow: 0 16px 38px rgba(102, 48, 28, 0.13);
     }
 
     .character-float {
@@ -688,6 +746,13 @@
 </head>
 
 <body>
+  <div class="loader" id="loader">
+    <div class="loader-box">
+      <div class="loader-title">loading little fox corner...</div>
+      <div class="loader-dots">✦ ✦ ✦</div>
+    </div>
+  </div>
+
   <div class="petals">
     <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
     <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
@@ -806,7 +871,7 @@
       <article class="card wide">
         <h2>✦ OC card</h2>
         <p class="tiny-note">tiny fox profile moment 🦊✨</p>
-        <div class="image-slot">
+        <div class="image-slot tilt-card">
           <img src="oc-card.png" alt="Haru OC card">
         </div>
       </article>
@@ -878,7 +943,7 @@
           He felt like someone who had existed alone for far too long.
         </p>
 
-        <div class="image-slot">
+        <div class="image-slot tilt-card">
           <img src="lore-1.png" alt="Haru lore image 1">
         </div>
 
@@ -900,7 +965,7 @@
           But near it, Haru no longer felt emotionally empty.
         </p>
 
-        <div class="image-slot">
+        <div class="image-slot tilt-card">
           <img src="lore-2.png" alt="Haru lore image 2">
         </div>
 
@@ -933,7 +998,7 @@
 
         <p>And later — fox ears and a tail appeared.</p>
 
-        <div class="image-slot">
+        <div class="image-slot tilt-card">
           <img src="lore-3.png" alt="Haru lore image 3">
         </div>
 
@@ -988,7 +1053,7 @@
         </p>
         <p class="muted">— Kazuto Kirigaya</p>
 
-        <div class="kirito-slot">
+        <div class="kirito-slot tilt-card">
           <img src="kirito.png" alt="Kirito image">
         </div>
 
@@ -1004,9 +1069,9 @@
         <p class="tiny-note">little moments i wanted to keep 🧡</p>
 
         <div class="gallery">
-          <div class="mini-slot"><img src="gallery-1.png" alt="Gallery image 1"></div>
-          <div class="mini-slot"><img src="gallery-2.png" alt="Gallery image 2"></div>
-          <div class="mini-slot"><img src="gallery-3.png" alt="Gallery image 3"></div>
+          <div class="mini-slot tilt-card"><img src="gallery-1.png" alt="Gallery image 1"></div>
+          <div class="mini-slot tilt-card"><img src="gallery-2.png" alt="Gallery image 2"></div>
+          <div class="mini-slot tilt-card"><img src="gallery-3.png" alt="Gallery image 3"></div>
         </div>
       </article>
     </section>
@@ -1032,6 +1097,7 @@
   </main>
 
   <script>
+    const loader = document.getElementById("loader");
     const clock = document.getElementById("liveClock");
     const greeting = document.getElementById("liveGreeting");
     const speechBubble = document.getElementById("speechBubble");
@@ -1041,6 +1107,12 @@
 
     bgMusic.volume = 0.045;
     let musicPlaying = false;
+
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        loader.classList.add("hide");
+      }, 850);
+    });
 
     const messages = [
       "have a soft day ✦",
@@ -1064,19 +1136,16 @@
     ];
 
     const sparkleSymbols = ["✦", "♡", "·"];
-
     let lastSparkleTime = 0;
 
     document.addEventListener("mousemove", (event) => {
       const now = Date.now();
-
       if (now - lastSparkleTime < 95) return;
       lastSparkleTime = now;
 
       const sparkle = document.createElement("span");
       sparkle.className = "sparkle";
       sparkle.textContent = sparkleSymbols[Math.floor(Math.random() * sparkleSymbols.length)];
-
       sparkle.style.left = event.clientX + "px";
       sparkle.style.top = event.clientY + "px";
 
@@ -1085,6 +1154,26 @@
       setTimeout(() => {
         sparkle.remove();
       }, 750);
+    });
+
+    document.querySelectorAll(".tilt-card").forEach((card) => {
+      card.addEventListener("mousemove", (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -2.2;
+        const rotateY = ((x - centerX) / centerX) * 2.2;
+
+        card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)";
+      });
     });
 
     function updateClock() {
