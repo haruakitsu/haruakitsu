@@ -242,6 +242,29 @@
       background: linear-gradient(135deg, #ffd2bf, #ffb4c2);
     }
 
+    .music-toggle {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      z-index: 30;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1.6px solid rgba(74, 36, 24, 0.28);
+      background: rgba(255, 248, 241, 0.92);
+      color: #583024;
+      font-family: inherit;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(102, 48, 28, 0.14);
+      backdrop-filter: blur(10px);
+      transition: 0.25s ease;
+    }
+
+    .music-toggle:hover {
+      transform: translateY(-3px);
+      background: #fff8f1;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
@@ -576,6 +599,12 @@
         max-width: 190px;
         font-size: 0.95rem;
       }
+
+      .music-toggle {
+        left: 10px;
+        bottom: 10px;
+        font-size: 0.95rem;
+      }
     }
   </style>
 </head>
@@ -591,6 +620,14 @@
   <div class="character-float" id="haruFloat" title="click for a small wish">
     <img src="haru.png" alt="Haru character">
   </div>
+
+  <audio id="bgMusic" loop>
+    <source src="bg-music.mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="music-toggle" id="musicToggle">
+    music: off
+  </button>
 
   <main class="site">
     <div class="topbar">
@@ -627,6 +664,7 @@
             <a class="btn primary" href="#about">about me</a>
             <a class="btn" href="#comforts">tiny comforts</a>
             <a class="btn" href="#lore">read the lore</a>
+            <a class="btn" href="https://www.instagram.com/haruakitsu/" target="_blank">Instagram</a>
             <a class="btn" href="https://www.youtube.com/@haruakitsu" target="_blank">YouTube</a>
             <a class="btn" href="https://ch.pinterest.com/haruakii_x/" target="_blank">Pinterest</a>
             <a class="btn" href="https://www.deviantart.com/haruakitsu" target="_blank">DeviantArt</a>
@@ -901,6 +939,7 @@
         <p class="muted">small places where i exist online.</p>
 
         <div class="actions">
+          <a class="btn" href="https://www.instagram.com/haruakitsu/" target="_blank">Instagram</a>
           <a class="btn" href="https://www.youtube.com/@haruakitsu" target="_blank">YouTube</a>
           <a class="btn" href="https://ch.pinterest.com/haruakii_x/" target="_blank">Pinterest</a>
           <a class="btn" href="https://www.deviantart.com/haruakitsu" target="_blank">DeviantArt</a>
@@ -919,6 +958,11 @@
     const greeting = document.getElementById("liveGreeting");
     const speechBubble = document.getElementById("speechBubble");
     const haruFloat = document.getElementById("haruFloat");
+    const bgMusic = document.getElementById("bgMusic");
+    const musicToggle = document.getElementById("musicToggle");
+
+    bgMusic.volume = 0.08;
+    let musicPlaying = false;
 
     const messages = [
       "have a soft day ✦",
@@ -969,6 +1013,22 @@
         speechBubble.classList.remove("show");
       }, 5000);
     }
+
+    musicToggle.addEventListener("click", async () => {
+      if (!musicPlaying) {
+        try {
+          await bgMusic.play();
+          musicPlaying = true;
+          musicToggle.textContent = "music: on";
+        } catch (error) {
+          musicToggle.textContent = "music blocked";
+        }
+      } else {
+        bgMusic.pause();
+        musicPlaying = false;
+        musicToggle.textContent = "music: off";
+      }
+    });
 
     updateClock();
     setInterval(updateClock, 1000);
