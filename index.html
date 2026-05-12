@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>haruakitsu ✦ little fox corner</title>
-  <meta name="description" content="haruakitsu — a warm handmade OC world with sketches, music, fox spirit lore and soft sunset feelings." />
+  <meta name="description" content="haruakitsu — a warm handmade OC world with sketches, soft fox vibes and small internet memories." />
 
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
 
@@ -311,6 +311,33 @@
       line-height: 1.2;
     }
 
+    .comfort-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .comfort {
+      padding: 16px;
+      border-radius: 22px;
+      border: 1.6px dashed rgba(74, 36, 24, 0.25);
+      background: rgba(255, 238, 225, 0.62);
+      min-height: 105px;
+      transition: 0.22s ease;
+    }
+
+    .comfort:hover {
+      transform: translateY(-4px) rotate(-1deg);
+      background: rgba(255, 246, 238, 0.82);
+    }
+
+    .comfort b {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.15rem;
+    }
+
     .image-slot, .kirito-slot {
       min-height: 245px;
       margin: 24px 0;
@@ -369,14 +396,6 @@
       box-shadow: 0 18px 40px rgba(80, 35, 20, 0.22);
       position: relative;
       animation: spin 7s linear infinite;
-    }
-
-    .vinyl::before {
-      content: "";
-      position: absolute;
-      inset: 18px;
-      border-radius: 50%;
-      border: 2px dashed rgba(255,255,255,0.18);
     }
 
     .vinyl::after {
@@ -465,9 +484,7 @@
       transition: 0.25s ease;
     }
 
-    .character-float:hover {
-      scale: 1.05;
-    }
+    .character-float:hover { scale: 1.05; }
 
     .character-float img {
       width: 100%;
@@ -524,9 +541,7 @@
       50% { transform: translateY(-12px) rotate(1deg); }
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
     @keyframes bounce {
       0%, 100% { transform: scaleY(0.55); opacity: 0.65; }
@@ -537,7 +552,7 @@
       .site { width: min(100% - 22px, 1180px); }
       .nav { border-radius: 24px; }
       .card { grid-column: 1 / -1; }
-      .gallery { grid-template-columns: 1fr; }
+      .gallery, .comfort-grid { grid-template-columns: 1fr; }
       h1 { letter-spacing: -3px; }
       .jp { letter-spacing: 5px; }
     }
@@ -582,6 +597,7 @@
       <nav class="nav">
         <a href="#home">home</a>
         <a href="#about">about</a>
+        <a href="#comforts">comforts</a>
         <a href="#lore">lore</a>
         <a href="#music">music</a>
         <a href="#gallery">gallery</a>
@@ -602,13 +618,13 @@
           <div class="soft-divider"></div>
 
           <p class="tagline">
-            a small internet corner with warm colors, random thoughts, music,
-            soft fox vibes and a little bit of emotional damage 🦊✨
+            a tiny internet corner for cozy chaos, apple thoughts, fox vibes
+            and whatever this little page is supposed to be 🦊✨
           </p>
 
           <div class="actions">
             <a class="btn primary" href="#lore">read the lore</a>
-            <a class="btn" href="#music">now playing</a>
+            <a class="btn" href="#comforts">tiny comforts</a>
             <a class="btn" href="#gallery">view gallery</a>
             <a class="btn" href="https://www.youtube.com/@haruakitsu" target="_blank">YouTube</a>
             <a class="btn" href="https://ch.pinterest.com/haruakii_x/" target="_blank">Pinterest</a>
@@ -627,23 +643,34 @@
         </p>
 
         <p>
-          i’m the kind of person who can randomly disappear into music, overthink one chess move
-          for way too long, then act like everything is completely normal.
+          i’m not really good at making “about me” texts, so this is just me trying to sound normal
+          while absolutely not sounding normal.
         </p>
 
         <p>
-          i like chess, warm colors, foxes, quiet evenings, pretty skies and volleyball —
-          even though i’m honestly not that good at it. but hey, at least the vibe is there 😭
+          i love apples. like, genuinely. crunchy apples are peak. milk is also top tier.
+          yumt-yumy, no further explanation needed.
         </p>
 
         <p>
-          i also really like small details: when someone writes something kind,
-          when a song hits at the perfect moment, or when a simple day suddenly feels a little softer.
+          i like chess because it makes me feel smart for five seconds, and then i immediately make
+          one questionable move and start staring at the board like it personally betrayed me.
         </p>
 
         <p>
-          this page is just my little corner of the internet. nothing too serious,
-          just something warm, personal and a bit silly 🦊✨
+          volleyball is cool too. i’m not amazing at it, but there’s something really nice about just
+          moving, laughing, missing the ball sometimes and pretending it was part of the plan.
+        </p>
+
+        <p>
+          i like small, oddly specific things: warm lights in windows, clean bedsheets, quiet walks,
+          cute fox art, someone saying “take care” and actually meaning it, and that one random snack
+          that saves your whole mood.
+        </p>
+
+        <p>
+          so yeah. nothing legendary here. just a person with a soft spot for cozy stuff,
+          silly little moments and orange-ish colors 🧡
         </p>
       </article>
 
@@ -654,20 +681,56 @@
           <li>Feb 1</li>
           <li>INFJ-T</li>
           <li>180 cm</li>
+          <li>apples</li>
+          <li>milk</li>
           <li>chess</li>
           <li>volleyball</li>
-          <li>music</li>
           <li>foxes</li>
-          <li>warm colors</li>
-          <li>quiet evenings</li>
+          <li>soft colors</li>
+          <li>quiet walks</li>
+          <li>cozy chaos</li>
         </ul>
       </article>
 
       <article class="card wide">
         <h2>✦ OC card</h2>
-        <p class="tiny-note">🦊✨</p>
+        <p class="tiny-note">tiny fox paperwork 🦊✨</p>
         <div class="image-slot">
           <img src="oc-card.png" alt="Haru OC card">
+        </div>
+      </article>
+    </section>
+
+    <section class="grid" id="comforts">
+      <article class="card wide">
+        <h2>✦ tiny comforts</h2>
+        <p class="tiny-note">very serious life research, obviously.</p>
+
+        <div class="comfort-grid">
+          <div class="comfort">
+            <b>🍎 apple tier</b>
+            crunchy, cold, sweet, not suspiciously soft. elite snack behavior.
+          </div>
+          <div class="comfort">
+            <b>🥛 milk moment</b>
+            simple. calm. somehow always feels like home.
+          </div>
+          <div class="comfort">
+            <b>♟️ chess brain</b>
+            “i have a plan” — me, 4 seconds before losing the queen.
+          </div>
+          <div class="comfort">
+            <b>🏐 volleyball logic</b>
+            missed the ball? character development.
+          </div>
+          <div class="comfort">
+            <b>🧡 orange things</b>
+            sunset colors, warm hoodies, soft lights, tiny happiness.
+          </div>
+          <div class="comfort">
+            <b>🦊 fox status</b>
+            currently vibing. slightly tired. still cute somehow.
+          </div>
         </div>
       </article>
     </section>
@@ -709,7 +772,6 @@
         </div>
 
         <p>The fox appeared during a rainy evening.</p>
-
         <p>Quiet. Still. Strange.</p>
 
         <p>
@@ -765,11 +827,8 @@
         </div>
 
         <p>At first, Haru tried to understand what had happened to him.</p>
-
         <p>But eventually he realized:</p>
-
         <p>The fox had not truly disappeared.</p>
-
         <p>It simply stopped existing separately from him.</p>
 
         <div class="quote">
@@ -788,7 +847,7 @@
           <div>
             <p>
               <b>Haru playlist</b><br>
-              <span class="muted">songs that feel like home</span>
+              <span class="muted">for walks, edits and staring at the ceiling</span>
             </p>
 
             <div class="equalizer">
@@ -856,7 +915,7 @@
     </section>
 
     <footer>
-      made with positivity and a concerning amount of music 🦊✨
+      powered by apples, milk and questionable life choices 🦊✨
     </footer>
   </main>
 
