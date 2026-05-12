@@ -11,14 +11,8 @@
 
   <style>
     :root {
-      --cream: #fff0e3;
       --paper: rgba(255, 245, 235, 0.82);
-      --paper-solid: #fff7ef;
-      --orange: #f28a4b;
-      --soft-orange: #ffc096;
-      --peach: #ffd9c3;
       --sakura: #ffb7c8;
-      --soft-pink: #ffd7df;
       --brown: #3d1f17;
       --muted: #8b5b4a;
       --line: rgba(72, 34, 22, 0.28);
@@ -198,6 +192,13 @@
       font-size: clamp(1rem, 3vw, 1.55rem);
     }
 
+    .soft-divider {
+      width: min(540px, 80%);
+      height: 2px;
+      margin: 22px auto;
+      background: linear-gradient(90deg, transparent, rgba(74,36,24,0.28), transparent);
+    }
+
     .tagline {
       max-width: 720px;
       margin: 28px auto 0;
@@ -262,7 +263,6 @@
     }
 
     .card.wide { grid-column: 1 / -1; }
-    .card.small { grid-column: span 4; }
 
     .card::after {
       content: "";
@@ -306,7 +306,7 @@
       line-height: 1.2;
     }
 
-    .image-slot {
+    .image-slot, .kirito-slot {
       min-height: 245px;
       margin: 24px 0;
       border-radius: 26px;
@@ -322,14 +322,14 @@
       transition: 0.25s ease;
     }
 
-    .image-slot:hover {
+    .image-slot:hover, .kirito-slot:hover {
       transform: scale(1.01);
       box-shadow: 0 16px 48px rgba(102, 48, 28, 0.14);
     }
 
     .image-slot img,
-    .mini-slot img,
-    .kirito-slot img {
+    .kirito-slot img,
+    .mini-slot img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -345,25 +345,6 @@
       border: 1.5px solid rgba(74, 36, 24, 0.22);
       font-style: italic;
       color: #653529;
-    }
-
-    .tracks {
-      display: grid;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .track {
-      padding: 14px 16px;
-      border-radius: 18px;
-      border: 1.7px dashed rgba(74, 36, 24, 0.32);
-      background: rgba(255, 229, 216, 0.64);
-      transition: 0.22s ease;
-    }
-
-    .track:hover {
-      transform: translateX(8px);
-      background: rgba(255, 209, 196, 0.78);
     }
 
     .vinyl-player {
@@ -427,18 +408,23 @@
     .equalizer span:nth-child(4) { height: 31px; animation-delay: 0.45s; }
     .equalizer span:nth-child(5) { height: 17px; animation-delay: 0.6s; }
 
-    .kirito-slot {
-      min-height: 280px;
-      margin-top: 18px;
-      border-radius: 26px;
-      border: 2px dashed rgba(74, 36, 24, 0.25);
-      background: rgba(255,255,255,0.28);
+    .tracks {
       display: grid;
-      place-items: center;
-      color: var(--muted);
-      overflow: hidden;
-      text-align: center;
-      padding: 18px;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .track {
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: 1.7px dashed rgba(74, 36, 24, 0.32);
+      background: rgba(255, 229, 216, 0.64);
+      transition: 0.22s ease;
+    }
+
+    .track:hover {
+      transform: translateX(8px);
+      background: rgba(255, 209, 196, 0.78);
     }
 
     .gallery {
@@ -471,10 +457,11 @@
       filter: drop-shadow(0 18px 24px rgba(80, 35, 20, 0.22));
       animation: floaty 4s ease-in-out infinite;
       cursor: pointer;
+      transition: 0.25s ease;
     }
 
     .character-float:hover {
-      transform: scale(1.05);
+      scale: 1.05;
     }
 
     .character-float img {
@@ -483,38 +470,30 @@
       border-radius: 22px;
     }
 
-    .character-placeholder {
-      padding: 18px;
-      border: 2px dashed rgba(74, 36, 24, 0.25);
-      border-radius: 24px;
-      background: rgba(255, 246, 238, 0.72);
-      color: var(--muted);
-      text-align: center;
-      font-weight: 800;
-    }
-
     .speech-bubble {
       position: fixed;
       right: 135px;
       bottom: 145px;
       z-index: 26;
-      max-width: 240px;
+      max-width: 245px;
       padding: 14px 16px;
       border-radius: 22px 22px 6px 22px;
       border: 1.6px solid rgba(74, 36, 24, 0.25);
-      background: rgba(255, 248, 241, 0.92);
+      background: rgba(255, 248, 241, 0.94);
       box-shadow: 0 16px 40px rgba(102, 48, 28, 0.16);
       color: #583024;
       font-size: 1.05rem;
       line-height: 1.45;
       backdrop-filter: blur(10px);
+      opacity: 0;
+      transform: translateY(8px) scale(0.96);
+      pointer-events: none;
+      transition: 0.28s ease;
     }
 
-    .soft-divider {
-      width: min(540px, 80%);
-      height: 2px;
-      margin: 22px auto;
-      background: linear-gradient(90deg, transparent, rgba(74,36,24,0.28), transparent);
+    .speech-bubble.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
 
     footer {
@@ -551,8 +530,7 @@
     @media (max-width: 850px) {
       .site { width: min(100% - 22px, 1180px); }
       .nav { border-radius: 24px; }
-      .card,
-      .card.small { grid-column: 1 / -1; }
+      .card { grid-column: 1 / -1; }
       .gallery { grid-template-columns: 1fr; }
       h1 { letter-spacing: -3px; }
       .jp { letter-spacing: 5px; }
@@ -587,28 +565,10 @@
     <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
   </div>
 
-  <!--
-    Put your images near this html file:
+  <div class="speech-bubble" id="speechBubble"></div>
 
-    haru-1.png
-    haru-2.png
-    haru-3.png
-    oc-card.png
-    lore-1.png
-    lore-2.png
-    lore-3.png
-    kirito.png
-    gallery-1.png
-    gallery-2.png
-    gallery-3.png
-  -->
-
-  <div class="speech-bubble" id="speechBubble">
-    have a soft day ✦
-  </div>
-
-  <div class="character-float" id="haruFloat" title="click me">
-    <img id="haruImage" src="haru-1.png" alt="Haru character">
+  <div class="character-float" id="haruFloat" title="click for a small wish">
+    <img src="haru.png" alt="Haru character">
   </div>
 
   <main class="site">
@@ -636,8 +596,8 @@
           <div class="soft-divider"></div>
 
           <p class="tagline">
-            A small handmade corner for sketches, music, quiet feelings and one fox spirit
-            who stayed a little longer than expected.
+            A small handmade corner for soft feelings, quiet stories, warm music
+            and one little fox spirit who stayed a bit longer than expected.
           </p>
 
           <div class="actions">
@@ -656,18 +616,16 @@
       <article class="card">
         <h2>✦ about Haru</h2>
         <p>
-          Hey, I’m Haru. This page is basically my little sketchbook corner — not perfect,
-          not too polished, but honest enough to feel like me.
+          Hey, I’m Haru. This page is basically my little warm corner —
+          not perfect, not too polished, but close enough to feel real.
         </p>
         <p>
-          I like quiet places, music that stays in your head for hours, sunset colors,
-          soft characters, foxes, sakura petals and drawings that look a little unfinished
-          in a good way.
+          I like quiet places, soft colors, foxes, sakura petals, music that stays
+          in your head, and small details that make ordinary days feel a little warmer.
         </p>
         <p>
-          I’m not really the loudest person in the room. I usually notice small things:
-          a warm message, a good song, a tiny detail in someone’s art, or that strange feeling
-          when a character somehow understands you better than real people do.
+          I’m usually not the loudest person in the room. I just notice things quietly:
+          kind words, gentle moments, pretty skies, and people who feel safe to be around.
         </p>
       </article>
 
@@ -687,9 +645,7 @@
 
       <article class="card wide">
         <h2>✦ OC card</h2>
-        <p class="muted">
-          Place your finished card here as <b>oc-card.png</b>.
-        </p>
+        <p class="muted">Place your finished card here as <b>oc-card.png</b>.</p>
         <div class="image-slot">
           <img src="oc-card.png" alt="Haru OC card">
         </div>
@@ -700,7 +656,7 @@
       <article class="card wide">
         <h2>✦ The Fox That Stayed</h2>
 
-        <p>Haru never felt like he belonged inside large groups of people.</p>
+        <p>Haru never felt like he fully belonged inside large groups of people.</p>
         <p>It was not because he hated people. He simply got tired when everything became too loud.</p>
         <p>But when Haru truly became attached to someone, he loved deeply. Almost too deeply.</p>
         <p>Because of that, being alone started to feel safer than losing someone important again.</p>
@@ -800,9 +756,7 @@
     <section class="grid" id="links">
       <article class="card wide">
         <h2>✦ links</h2>
-        <p class="muted">
-          Main socials and future support/shop page.
-        </p>
+        <p class="muted">Main socials and future support/shop page.</p>
 
         <div class="actions">
           <a class="btn" href="https://www.youtube.com/@haruakitsu" target="_blank">YouTube</a>
@@ -823,25 +777,28 @@
     const greeting = document.getElementById("liveGreeting");
     const speechBubble = document.getElementById("speechBubble");
     const haruFloat = document.getElementById("haruFloat");
-    const haruImage = document.getElementById("haruImage");
-
-    const haruImages = [
-      "haru-1.png",
-      "haru-2.png",
-      "haru-3.png"
-    ];
 
     const messages = [
       "have a soft day ✦",
-      "good luck today, okay?",
-      "drink some water, little fox",
-      "you did enough for today",
-      "stay warm and keep drawing",
-      "the fox is still here",
-      "good morning, sunshine",
-      "good evening, dreamer",
-      "one small step is still progress",
-      "your sketchbook missed you"
+      "hope today feels gentle",
+      "stay warm, okay?",
+      "good things will come",
+      "don’t forget to rest",
+      "you matter more than you think",
+      "hope your day feels peaceful",
+      "take care of yourself today",
+      "the fox believes in you",
+      "good evening ✦",
+      "you deserve quiet happiness",
+      "stay safe out there",
+      "hope something nice happens today",
+      "drink some water 🦊",
+      "be kind to yourself today",
+      "may today be kinder to you",
+      "you are doing better than you think",
+      "small steps still count",
+      "breathe slowly, little fox",
+      "you deserve a calm moment"
     ];
 
     function updateClock() {
@@ -862,29 +819,21 @@
       }
     }
 
-    function randomMessage() {
-      const text = messages[Math.floor(Math.random() * messages.length)];
-      speechBubble.textContent = text;
-    }
+    function showRandomMessage() {
+      const randomText = messages[Math.floor(Math.random() * messages.length)];
+      speechBubble.textContent = randomText;
+      speechBubble.classList.add("show");
 
-    let imageIndex = 0;
-
-    function changeHaruImage() {
-      imageIndex = (imageIndex + 1) % haruImages.length;
-      haruImage.src = haruImages[imageIndex];
+      clearTimeout(window.hideBubbleTimer);
+      window.hideBubbleTimer = setTimeout(() => {
+        speechBubble.classList.remove("show");
+      }, 5000);
     }
 
     updateClock();
-    randomMessage();
-
     setInterval(updateClock, 1000);
-    setInterval(randomMessage, 9000);
-    setInterval(changeHaruImage, 6500);
 
-    haruFloat.addEventListener("click", () => {
-      randomMessage();
-      changeHaruImage();
-    });
+    haruFloat.addEventListener("click", showRandomMessage);
   </script>
 </body>
 </html>
