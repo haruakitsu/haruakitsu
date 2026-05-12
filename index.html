@@ -34,6 +34,7 @@
         linear-gradient(135deg, #fff2e8, #ffd9c8 45%, #ffc39f);
       min-height: 100vh;
       overflow-x: hidden;
+      cursor: default;
     }
 
     body::before {
@@ -47,6 +48,28 @@
       background-size: 34px 34px;
       opacity: 0.28;
       z-index: 0;
+    }
+
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      color: rgba(255, 139, 93, 0.72);
+      font-size: 12px;
+      transform: translate(-50%, -50%);
+      animation: sparkleFade 0.75s ease-out forwards;
+      user-select: none;
+    }
+
+    @keyframes sparkleFade {
+      0% {
+        opacity: 0.85;
+        transform: translate(-50%, -50%) scale(0.7) rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -90%) scale(1.15) rotate(20deg);
+      }
     }
 
     .petals {
@@ -300,6 +323,27 @@
       opacity: 0.84;
     }
 
+    .card::before {
+      content: "✦";
+      position: absolute;
+      right: 24px;
+      top: 22px;
+      color: rgba(242, 138, 75, 0.0);
+      font-size: 1.45rem;
+      transform: rotate(-12deg) scale(0.7);
+      transition: 0.25s ease;
+      pointer-events: none;
+    }
+
+    .card:hover::before {
+      color: rgba(242, 138, 75, 0.62);
+      transform: rotate(8deg) scale(1);
+    }
+
+    .card:nth-child(2n):hover::before { content: "♡"; }
+    .card:nth-child(3n):hover::before { content: "₍ᐢ. .ᐢ₎"; font-size: 1.1rem; }
+    .card:nth-child(4n):hover::before { content: "🦊"; font-size: 1.25rem; }
+
     h2 {
       margin: 0 0 16px;
       font-size: 1.75rem;
@@ -332,6 +376,12 @@
       background: rgba(255, 222, 208, 0.68);
       border: 1.5px dashed rgba(74, 36, 24, 0.24);
       line-height: 1.2;
+      transition: 0.22s ease;
+    }
+
+    .pill-list li:hover {
+      transform: translateY(-2px) rotate(-1deg);
+      background: rgba(255, 246, 238, 0.82);
     }
 
     .comfort-grid {
@@ -348,11 +398,26 @@
       background: rgba(255, 238, 225, 0.62);
       min-height: 105px;
       transition: 0.22s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .comfort::after {
+      content: "♡";
+      position: absolute;
+      right: 14px;
+      bottom: 10px;
+      color: rgba(242, 138, 75, 0);
+      transition: 0.22s ease;
     }
 
     .comfort:hover {
       transform: translateY(-4px) rotate(-1deg);
       background: rgba(255, 246, 238, 0.82);
+    }
+
+    .comfort:hover::after {
+      color: rgba(242, 138, 75, 0.6);
     }
 
     .comfort b {
@@ -389,6 +454,13 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: 0.35s ease;
+    }
+
+    .image-slot:hover img,
+    .kirito-slot:hover img,
+    .mini-slot:hover img {
+      transform: scale(1.025);
     }
 
     .quote {
@@ -492,6 +564,12 @@
       color: var(--muted);
       padding: 16px;
       overflow: hidden;
+      transition: 0.25s ease;
+    }
+
+    .mini-slot:hover {
+      transform: translateY(-4px) rotate(-1deg);
+      box-shadow: 0 16px 38px rgba(102, 48, 28, 0.13);
     }
 
     .character-float {
@@ -626,7 +704,7 @@
   </audio>
 
   <button class="music-toggle" id="musicToggle">
-    music: off
+    ♪ cozy mode: off
   </button>
 
   <main class="site">
@@ -961,7 +1039,7 @@
     const bgMusic = document.getElementById("bgMusic");
     const musicToggle = document.getElementById("musicToggle");
 
-    bgMusic.volume = 0.08;
+    bgMusic.volume = 0.045;
     let musicPlaying = false;
 
     const messages = [
@@ -984,6 +1062,30 @@
       "you deserve a calm moment",
       "thanks for being here (˶ᵔ ᵕ ᵔ˶)"
     ];
+
+    const sparkleSymbols = ["✦", "♡", "·"];
+
+    let lastSparkleTime = 0;
+
+    document.addEventListener("mousemove", (event) => {
+      const now = Date.now();
+
+      if (now - lastSparkleTime < 95) return;
+      lastSparkleTime = now;
+
+      const sparkle = document.createElement("span");
+      sparkle.className = "sparkle";
+      sparkle.textContent = sparkleSymbols[Math.floor(Math.random() * sparkleSymbols.length)];
+
+      sparkle.style.left = event.clientX + "px";
+      sparkle.style.top = event.clientY + "px";
+
+      document.body.appendChild(sparkle);
+
+      setTimeout(() => {
+        sparkle.remove();
+      }, 750);
+    });
 
     function updateClock() {
       const now = new Date();
@@ -1019,14 +1121,14 @@
         try {
           await bgMusic.play();
           musicPlaying = true;
-          musicToggle.textContent = "music: on";
+          musicToggle.textContent = "♪ cozy mode: on";
         } catch (error) {
-          musicToggle.textContent = "music blocked";
+          musicToggle.textContent = "♪ click again";
         }
       } else {
         bgMusic.pause();
         musicPlaying = false;
-        musicToggle.textContent = "music: off";
+        musicToggle.textContent = "♪ cozy mode: off";
       }
     });
 
