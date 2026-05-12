@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>haruakitsu ✦ lore world</title>
-  <meta name="description" content="haruakitsu — soft fox spirit, sunset sketchbook, sakura lore and quiet music." />
+  <title>haruakitsu ✦ little fox corner</title>
+  <meta name="description" content="haruakitsu — a warm handmade OC world with sketches, music, fox spirit lore and soft sunset feelings." />
 
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
 
@@ -52,17 +52,6 @@
         linear-gradient(90deg, rgba(70, 32, 18, 0.055) 1px, transparent 1px);
       background-size: 34px 34px;
       opacity: 0.28;
-      z-index: 0;
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.35), transparent 22%),
-        radial-gradient(circle at 70% 70%, rgba(255,255,255,0.22), transparent 26%);
       z-index: 0;
     }
 
@@ -179,16 +168,16 @@
       z-index: 2;
     }
 
-    .kicker {
+    .live-note {
       display: inline-flex;
       gap: 8px;
       align-items: center;
-      padding: 8px 14px;
+      padding: 8px 15px;
       border-radius: 999px;
       border: 1.5px dashed rgba(74, 36, 24, 0.34);
       background: rgba(255,255,255,0.35);
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 1rem;
       margin-bottom: 18px;
     }
 
@@ -294,11 +283,6 @@
       letter-spacing: 0.5px;
     }
 
-    h3 {
-      margin: 24px 0 10px;
-      color: #69382a;
-    }
-
     p, li {
       font-size: 1.03rem;
       line-height: 1.78;
@@ -343,7 +327,9 @@
       box-shadow: 0 16px 48px rgba(102, 48, 28, 0.14);
     }
 
-    .image-slot img {
+    .image-slot img,
+    .mini-slot img,
+    .kirito-slot img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -408,7 +394,7 @@
     }
 
     .vinyl::after {
-      content: "TØP";
+      content: "Haru";
       position: absolute;
       inset: 49px;
       border-radius: 50%;
@@ -441,6 +427,20 @@
     .equalizer span:nth-child(4) { height: 31px; animation-delay: 0.45s; }
     .equalizer span:nth-child(5) { height: 17px; animation-delay: 0.6s; }
 
+    .kirito-slot {
+      min-height: 280px;
+      margin-top: 18px;
+      border-radius: 26px;
+      border: 2px dashed rgba(74, 36, 24, 0.25);
+      background: rgba(255,255,255,0.28);
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      overflow: hidden;
+      text-align: center;
+      padding: 18px;
+    }
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -461,27 +461,26 @@
       overflow: hidden;
     }
 
-    .mini-slot img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
     .character-float {
       position: fixed;
       right: 18px;
       bottom: 16px;
-      width: min(170px, 28vw);
-      z-index: 15;
-      opacity: 0.95;
-      pointer-events: none;
+      width: min(178px, 30vw);
+      z-index: 25;
+      opacity: 0.96;
       filter: drop-shadow(0 18px 24px rgba(80, 35, 20, 0.22));
       animation: floaty 4s ease-in-out infinite;
+      cursor: pointer;
+    }
+
+    .character-float:hover {
+      transform: scale(1.05);
     }
 
     .character-float img {
       width: 100%;
       display: block;
+      border-radius: 22px;
     }
 
     .character-placeholder {
@@ -492,6 +491,23 @@
       color: var(--muted);
       text-align: center;
       font-weight: 800;
+    }
+
+    .speech-bubble {
+      position: fixed;
+      right: 135px;
+      bottom: 145px;
+      z-index: 26;
+      max-width: 240px;
+      padding: 14px 16px;
+      border-radius: 22px 22px 6px 22px;
+      border: 1.6px solid rgba(74, 36, 24, 0.25);
+      background: rgba(255, 248, 241, 0.92);
+      box-shadow: 0 16px 40px rgba(102, 48, 28, 0.16);
+      color: #583024;
+      font-size: 1.05rem;
+      line-height: 1.45;
+      backdrop-filter: blur(10px);
     }
 
     .soft-divider {
@@ -534,16 +550,11 @@
 
     @media (max-width: 850px) {
       .site { width: min(100% - 22px, 1180px); }
-
       .nav { border-radius: 24px; }
-
       .card,
       .card.small { grid-column: 1 / -1; }
-
       .gallery { grid-template-columns: 1fr; }
-
       h1 { letter-spacing: -3px; }
-
       .jp { letter-spacing: 5px; }
     }
 
@@ -555,8 +566,16 @@
       }
 
       .character-float {
-        width: 110px;
-        opacity: 0.72;
+        width: 118px;
+        right: 10px;
+        bottom: 10px;
+      }
+
+      .speech-bubble {
+        right: 82px;
+        bottom: 112px;
+        max-width: 190px;
+        font-size: 0.95rem;
       }
     }
   </style>
@@ -564,39 +583,32 @@
 
 <body>
   <div class="petals">
-    <div class="petal"></div>
-    <div class="petal"></div>
-    <div class="petal"></div>
-    <div class="petal"></div>
-    <div class="petal"></div>
-    <div class="petal"></div>
-    <div class="petal"></div>
-    <div class="petal"></div>
+    <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
   </div>
 
   <!--
-    SAFE IMAGE SYSTEM:
-    Upload files to GitHub with simple names:
+    Put your images near this html file:
+
+    haru-1.png
+    haru-2.png
+    haru-3.png
     oc-card.png
-    haru.png
     lore-1.png
     lore-2.png
     lore-3.png
+    kirito.png
     gallery-1.png
     gallery-2.png
     gallery-3.png
-
-    Then replace placeholders with:
-    <img src="filename.png" alt="description">
   -->
 
-  <div class="character-float">
-    <div class="character-placeholder">
-      upload<br>haru.png<br>later 🦊
-    </div>
-    <!-- Later:
-    <img src="haru.png" alt="Haru character">
-    -->
+  <div class="speech-bubble" id="speechBubble">
+    have a soft day ✦
+  </div>
+
+  <div class="character-float" id="haruFloat" title="click me">
+    <img id="haruImage" src="haru-1.png" alt="Haru character">
   </div>
 
   <main class="site">
@@ -614,7 +626,9 @@
     <section class="hero" id="home">
       <div class="hero-card">
         <div class="hero-inner">
-          <div class="kicker">✦ sunset sketchbook • fox spirit • sakura archive</div>
+          <div class="live-note">
+            ✦ <span id="liveGreeting">good day</span> • <span id="liveClock">00:00</span>
+          </div>
 
           <h1>haruakitsu</h1>
           <div class="jp">ハルアキツ</div>
@@ -622,8 +636,8 @@
           <div class="soft-divider"></div>
 
           <p class="tagline">
-            A warm little corner for Haru — a quiet fox-inspired character shaped by
-            music, sunset skies, soft sketches, deep attachment and the fox that stayed.
+            A small handmade corner for sketches, music, quiet feelings and one fox spirit
+            who stayed a little longer than expected.
           </p>
 
           <div class="actions">
@@ -642,12 +656,18 @@
       <article class="card">
         <h2>✦ about Haru</h2>
         <p>
-          Haru never felt made for large groups. Loud voices, crowded rooms and too much attention
-          tired him quickly.
+          Hey, I’m Haru. This page is basically my little sketchbook corner — not perfect,
+          not too polished, but honest enough to feel like me.
         </p>
         <p>
-          But when he truly attached to one person, he loved deeply — almost too deeply.
-          That is why he often kept distance, even when he secretly wanted closeness.
+          I like quiet places, music that stays in your head for hours, sunset colors,
+          soft characters, foxes, sakura petals and drawings that look a little unfinished
+          in a good way.
+        </p>
+        <p>
+          I’m not really the loudest person in the room. I usually notice small things:
+          a warm message, a good song, a tiny detail in someone’s art, or that strange feeling
+          when a character somehow understands you better than real people do.
         </p>
       </article>
 
@@ -668,10 +688,10 @@
       <article class="card wide">
         <h2>✦ OC card</h2>
         <p class="muted">
-          Later: upload your finished OC card as <b>oc-card.png</b> and replace this placeholder with the image.
+          Place your finished card here as <b>oc-card.png</b>.
         </p>
         <div class="image-slot">
-          OC card image placeholder ✦
+          <img src="oc-card.png" alt="Haru OC card">
         </div>
       </article>
     </section>
@@ -681,100 +701,30 @@
         <h2>✦ The Fox That Stayed</h2>
 
         <p>Haru never felt like he belonged inside large groups of people.</p>
-
-        <p>
-          It was not because he hated people. He simply felt overwhelmed by too many voices,
-          too much attention and the constant pressure to react.
-        </p>
-
-        <p>
-          But when Haru truly became attached to someone, he loved deeply.
-          Almost too deeply.
-        </p>
-
-        <p>
-          Because of that, he rarely allowed people to get close.
-          Being alone felt safer than losing someone important again.
-        </p>
-
-        <p>
-          Music, drawing, evening walks and sunset skies slowly replaced real closeness in his life.
-          Haru got used to loneliness — not because he wanted it, but because it became familiar.
-        </p>
-
-        <p>
-          Then, one day, he realized something that scared him:
-          he no longer felt like a lonely person.
-          He felt like someone who had existed alone for far too long.
-        </p>
+        <p>It was not because he hated people. He simply got tired when everything became too loud.</p>
+        <p>But when Haru truly became attached to someone, he loved deeply. Almost too deeply.</p>
+        <p>Because of that, being alone started to feel safer than losing someone important again.</p>
 
         <div class="image-slot">
-          lore image 1 placeholder ✦
+          <img src="lore-1.png" alt="Haru lore image 1">
         </div>
 
         <p>The fox appeared during a rainy evening.</p>
-
         <p>Quiet. Still. Strange.</p>
-
-        <p>
-          It did not run away. It did not come closer either.
-          It simply sat nearby, as if it already understood him.
-        </p>
-
-        <p>
-          Haru kept seeing the fox again — near empty stations, under street lights,
-          in window reflections and between falling sakura petals.
-        </p>
-
-        <p>
-          The fox never made a sound.
-          But near it, Haru no longer felt emotionally empty.
-        </p>
+        <p>It did not run away. It did not come closer either. It simply sat nearby, as if it already understood him.</p>
 
         <div class="image-slot">
-          lore image 2 placeholder ✦
+          <img src="lore-2.png" alt="Haru lore image 2">
         </div>
 
-        <p>
-          Eventually, Haru understood something strange:
-          the fox was lonely too.
-        </p>
-
-        <p>
-          Not like an animal.
-          Like a spirit that had wandered alone for too long.
-        </p>
-
-        <p>
-          Maybe that was why it stayed near him.
-          Maybe it recognized the same loneliness inside Haru.
-        </p>
-
-        <p>
-          Then, one night, the fox disappeared completely.
-          Haru never saw it separately again.
-        </p>
-
-        <p>But after that, the changes began.</p>
-
-        <p>
-          His emotions became sharper. He noticed warmth in voices,
-          silence between words, the feeling of rain and the color of sunset light on windows.
-        </p>
-
-        <p>And later — fox ears and a tail appeared.</p>
+        <p>Eventually, Haru understood something strange: the fox was lonely too.</p>
+        <p>Maybe that was why it stayed near him. Maybe it recognized the same loneliness inside Haru.</p>
+        <p>Then, one night, the fox disappeared completely.</p>
+        <p>But after that, fox ears and a tail appeared.</p>
 
         <div class="image-slot">
-          lore image 3 placeholder ✦
+          <img src="lore-3.png" alt="Haru lore image 3">
         </div>
-
-        <p>At first, Haru tried to understand what had happened to him.</p>
-
-        <p>But eventually he realized:</p>
-
-        <p>The fox had not truly disappeared.</p>
-
-        <p>It simply stopped existing separately from him.</p>
 
         <div class="quote">
           “Some fox spirits stay beside lonely people until they no longer have to carry that loneliness alone.”
@@ -791,7 +741,7 @@
 
           <div>
             <p>
-              <b>Twenty One Pilots</b><br>
+              <b>Haru playlist</b><br>
               <span class="muted">songs that feel like home</span>
             </p>
 
@@ -800,13 +750,13 @@
             </div>
 
             <div class="actions" style="justify-content:flex-start; margin-top:16px;">
-              <a class="btn primary" href="PASTE_YOUR_SPOTIFY_LINK_HERE" target="_blank">open Spotify</a>
+              <a class="btn primary" href="https://open.spotify.com/user/zi0ds6uvrrfmgujjtwcbs9s60" target="_blank">open Spotify</a>
             </div>
           </div>
         </div>
 
         <div class="tracks">
-          <div class="track">♪ Twenty One Pilots — Stressed Out</div>
+          <div class="track">♪ Twenty One Pilots</div>
           <div class="track">♪ Bring Me The Horizon</div>
           <div class="track">♪ NF</div>
           <div class="track">♪ Billie Eilish</div>
@@ -815,12 +765,16 @@
       </article>
 
       <article class="card">
-        <h2>✦ SAO quote</h2>
+        <h2>✦ SAO corner</h2>
         <p>
           “Levels are just numbers.<br>
           There are more important things.”
         </p>
         <p class="muted">— Kazuto Kirigaya</p>
+
+        <div class="kirito-slot">
+          <img src="kirito.png" alt="Kirito image">
+        </div>
 
         <div class="quote">
           quiet strength over numbers.
@@ -832,14 +786,13 @@
       <article class="card wide">
         <h2>✦ gallery</h2>
         <p class="muted">
-          Upload images later and replace placeholders. Keep names simple:
-          <b>gallery-1.png</b>, <b>gallery-2.png</b>, <b>gallery-3.png</b>.
+          Add your images as <b>gallery-1.png</b>, <b>gallery-2.png</b>, <b>gallery-3.png</b>.
         </p>
 
         <div class="gallery">
-          <div class="mini-slot">gallery image 1</div>
-          <div class="mini-slot">gallery image 2</div>
-          <div class="mini-slot">gallery image 3</div>
+          <div class="mini-slot"><img src="gallery-1.png" alt="Gallery image 1"></div>
+          <div class="mini-slot"><img src="gallery-2.png" alt="Gallery image 2"></div>
+          <div class="mini-slot"><img src="gallery-3.png" alt="Gallery image 3"></div>
         </div>
       </article>
     </section>
@@ -864,5 +817,74 @@
       made with warm sunsets, sakura petals and the fox that stayed ✦
     </footer>
   </main>
+
+  <script>
+    const clock = document.getElementById("liveClock");
+    const greeting = document.getElementById("liveGreeting");
+    const speechBubble = document.getElementById("speechBubble");
+    const haruFloat = document.getElementById("haruFloat");
+    const haruImage = document.getElementById("haruImage");
+
+    const haruImages = [
+      "haru-1.png",
+      "haru-2.png",
+      "haru-3.png"
+    ];
+
+    const messages = [
+      "have a soft day ✦",
+      "good luck today, okay?",
+      "drink some water, little fox",
+      "you did enough for today",
+      "stay warm and keep drawing",
+      "the fox is still here",
+      "good morning, sunshine",
+      "good evening, dreamer",
+      "one small step is still progress",
+      "your sketchbook missed you"
+    ];
+
+    function updateClock() {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+
+      clock.textContent = `${String(hours).padStart(2, "0")}:${minutes}`;
+
+      if (hours >= 5 && hours < 12) {
+        greeting.textContent = "good morning";
+      } else if (hours >= 12 && hours < 18) {
+        greeting.textContent = "good day";
+      } else if (hours >= 18 && hours < 23) {
+        greeting.textContent = "good evening";
+      } else {
+        greeting.textContent = "quiet night";
+      }
+    }
+
+    function randomMessage() {
+      const text = messages[Math.floor(Math.random() * messages.length)];
+      speechBubble.textContent = text;
+    }
+
+    let imageIndex = 0;
+
+    function changeHaruImage() {
+      imageIndex = (imageIndex + 1) % haruImages.length;
+      haruImage.src = haruImages[imageIndex];
+    }
+
+    updateClock();
+    randomMessage();
+
+    setInterval(updateClock, 1000);
+    setInterval(randomMessage, 9000);
+    setInterval(changeHaruImage, 6500);
+
+    haruFloat.addEventListener("click", () => {
+      randomMessage();
+      changeHaruImage();
+    });
+  </script>
 </body>
 </html>
